@@ -2,88 +2,107 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700">
-      {/* Header */}
-      <header className="container mx-auto px-6 py-6">
-        <nav className="flex items-center justify-between">
-          <div className="text-white font-bold text-2xl">
+    <div className="min-h-screen">
+      <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+        <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="text-gray-900 font-bold text-xl">
             PEAC × x402
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-6 items-center">
             <Link
               href="/.well-known/peac.txt"
-              className="text-white/90 hover:text-white transition-colors"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
               peac.txt
             </Link>
             <Link
               href="/verify/offline"
-              className="text-white/90 hover:text-white transition-colors"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
               Verify
+            </Link>
+            <Link
+              href="/shop"
+              className="btn-primary"
+            >
+              Try Demo
             </Link>
           </div>
         </nav>
       </header>
 
-      {/* Hero Section */}
-      <main className="container mx-auto px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+      <main className="container mx-auto px-6">
+        <section className="max-w-4xl mx-auto text-center py-20">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             Verifiable Receipts for
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-pink-200">
-              Paid API Calls
-            </span>
+            <span className="text-brand">Paid API Calls</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-            Every <code className="bg-white/20 px-2 py-1 rounded">200 OK</code> comes with a cryptographic receipt.
+          <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+            Every <code className="bg-gray-100 px-2 py-1 rounded text-brand font-mono text-base">200 OK</code> comes with a cryptographic receipt.
             <br />
             Pay with x402 (Base/USDC) → Get proof of what you bought, from whom, under which policy.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link
-              href="/shop"
-              className="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all hover:scale-105 shadow-xl"
-            >
-              Try Human Checkout
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Link href="/shop" className="btn-primary text-base">
+              Try Shop Demo
             </Link>
-            <Link
-              href="#for-agents"
-              className="bg-gradient-to-r from-yellow-400 to-pink-400 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-yellow-500 hover:to-pink-500 transition-all hover:scale-105 shadow-xl"
-            >
+            <Link href="#for-agents" className="btn-secondary text-base">
               Agent API
             </Link>
             <Link
               href="#how-it-works"
-              className="bg-white/10 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/20 transition-all border-2 border-white/30"
+              className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all"
             >
               How It Works
             </Link>
           </div>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-white/90">
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-              <div className="text-3xl font-bold mb-2">HTTP 402</div>
-              <div className="text-sm">Payment Required → x402 → Receipt</div>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500">
+            <Link href="/.well-known/peac.txt" className="hover:text-brand transition-colors">
+              peac.txt
+            </Link>
+            <span>·</span>
+            <Link href="/aipref.json" className="hover:text-brand transition-colors">
+              AIPREF
+            </Link>
+            <span>·</span>
+            <Link href="/api/openapi.json" className="hover:text-brand transition-colors">
+              OpenAPI
+            </Link>
+            <span>·</span>
+            <a
+              href="https://github.com/peacprotocol/peac-x402-receipts-demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand transition-colors"
+            >
+              GitHub
+            </a>
+          </div>
+        </section>
+
+        <section className="max-w-6xl mx-auto py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="card p-8">
+              <div className="text-3xl font-bold text-brand mb-3">HTTP 402</div>
+              <div className="text-gray-600 text-sm">Payment Required → x402 → Receipt</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-              <div className="text-3xl font-bold mb-2">EdDSA</div>
-              <div className="text-sm">Cryptographically signed receipts</div>
+            <div className="card p-8">
+              <div className="text-3xl font-bold text-brand mb-3">EdDSA</div>
+              <div className="text-gray-600 text-sm">Cryptographically signed receipts</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-              <div className="text-3xl font-bold mb-2">Base/USDC</div>
-              <div className="text-sm">Onchain payments, verifiable proofs</div>
+            <div className="card p-8">
+              <div className="text-3xl font-bold text-brand mb-3">Base/USDC</div>
+              <div className="text-gray-600 text-sm">On-chain payments, verifiable proofs</div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* How It Works */}
-        <div id="how-it-works" className="max-w-5xl mx-auto mt-32">
-          <h2 className="text-4xl font-bold text-white text-center mb-12">
+        <section id="how-it-works" className="max-w-5xl mx-auto py-20">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
             How It Works
           </h2>
 
@@ -110,61 +129,60 @@ export default function Home() {
                 description: '200 OK with PEAC-Receipt header: cryptographic proof of purchase, verifiable forever'
               }
             ].map((item) => (
-              <div key={item.step} className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4">
+              <div key={item.step} className="card p-6">
+                <div className="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
                   {item.step}
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{item.title}</h3>
-                <p className="text-white/80 text-sm">{item.description}</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* For Agents */}
-        <div id="for-agents" className="max-w-5xl mx-auto mt-32">
-          <h2 className="text-4xl font-bold text-white text-center mb-6">
+        <section id="for-agents" className="max-w-5xl mx-auto py-20">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-6">
             Agent-to-Agent Commerce
           </h2>
-          <p className="text-xl text-white/90 text-center mb-12 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
             Autonomous agents can discover, purchase, and verify digital goods using machine-readable APIs.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
-              <h3 className="text-xl font-semibold text-white mb-3">Discovery</h3>
-              <p className="text-white/80 mb-4 text-sm">
-                Start with <code className="bg-white/20 px-2 py-1 rounded text-xs">/.well-known/peac.txt</code> to learn payment options and policies.
+            <div className="card p-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Discovery</h3>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                Start with <code className="bg-gray-100 px-2 py-1 rounded text-xs font-mono">/.well-known/peac.txt</code> to learn payment options and policies.
               </p>
               <Link
                 href="/.well-known/peac.txt"
-                className="text-yellow-300 hover:text-yellow-200 text-sm font-medium"
+                className="text-brand hover:text-brand-hover text-sm font-medium"
               >
                 View peac.txt →
               </Link>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
-              <h3 className="text-xl font-semibold text-white mb-3">OpenAPI Spec</h3>
-              <p className="text-white/80 mb-4 text-sm">
+            <div className="card p-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">OpenAPI Spec</h3>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 Complete API documentation with schemas, endpoints, and examples.
               </p>
               <Link
                 href="/api/openapi.json"
-                className="text-yellow-300 hover:text-yellow-200 text-sm font-medium"
+                className="text-brand hover:text-brand-hover text-sm font-medium"
               >
                 View OpenAPI →
               </Link>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
-              <h3 className="text-xl font-semibold text-white mb-3">Documentation</h3>
-              <p className="text-white/80 mb-4 text-sm">
+            <div className="card p-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Documentation</h3>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 curl examples, headless buyer agent code, receipt format details.
               </p>
               <a
-                href="https://github.com/peac/x402-demo/blob/main/docs/AGENT_TO_AGENT.md"
-                className="text-yellow-300 hover:text-yellow-200 text-sm font-medium"
+                href="https://github.com/peacprotocol/peac-x402-receipts-demo/blob/main/docs/AGENT_TO_AGENT.md"
+                className="text-brand hover:text-brand-hover text-sm font-medium"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -173,31 +191,30 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-yellow-400/10 to-pink-400/10 backdrop-blur-lg rounded-xl p-8 border-2 border-yellow-400/30">
-            <h3 className="text-2xl font-semibold text-white mb-4">Stateless Checkout Endpoint</h3>
-            <p className="text-white/90 mb-4">
-              <code className="bg-white/20 px-2 py-1 rounded">POST /api/shop/checkout-direct</code>
+          <div className="card p-8 border-2 border-brand/20">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Stateless Checkout Endpoint</h3>
+            <p className="text-gray-900 mb-2 font-mono text-sm">
+              POST /api/shop/checkout-direct
             </p>
-            <p className="text-white/80 text-sm mb-4">
+            <p className="text-gray-600 text-sm mb-6 leading-relaxed">
               No cart state required. Send items array, get 402 → pay via x402 → retry with proof → receive cryptographic receipt.
             </p>
-            <div className="bg-black/30 rounded p-4 font-mono text-xs text-white/90 overflow-x-auto">
-              <div className="mb-2"># Step 1: Attempt checkout</div>
-              <div className="text-yellow-300">curl -X POST /api/shop/checkout-direct \</div>
-              <div className="text-yellow-300 ml-4">  -d {`'{"items":[{"sku":"sku_tea","qty":1}]}'`}</div>
-              <div className="mt-4 mb-2"># Step 2: Get session_id from 402 response, pay via x402</div>
-              <div className="mt-4 mb-2"># Step 3: Retry with proof</div>
-              <div className="text-pink-300">curl -X POST /api/shop/checkout-direct \</div>
-              <div className="text-pink-300 ml-4">  -H {`"X-402-Session: $TOKEN"`} \</div>
-              <div className="text-pink-300 ml-4">  -H {`"X-402-Proof: $PROOF_ID"`} \</div>
-              <div className="text-pink-300 ml-4">  -d {`'{"items":[{"sku":"sku_tea","qty":1}]}'`}</div>
+            <div className="code-block">
+              <div className="mb-2 text-gray-400"># Step 1: Attempt checkout</div>
+              <div className="text-green-400">curl -X POST /api/shop/checkout-direct \</div>
+              <div className="text-green-400 ml-4">  -d {`'{"items":[{"sku":"sku_tea","qty":1}]}'`}</div>
+              <div className="mt-4 mb-2 text-gray-400"># Step 2: Get session_id from 402 response, pay via x402</div>
+              <div className="mt-4 mb-2 text-gray-400"># Step 3: Retry with proof</div>
+              <div className="text-cyan-400">curl -X POST /api/shop/checkout-direct \</div>
+              <div className="text-cyan-400 ml-4">  -H {`"X-402-Session: $TOKEN"`} \</div>
+              <div className="text-cyan-400 ml-4">  -H {`"X-402-Proof: $PROOF_ID"`} \</div>
+              <div className="text-cyan-400 ml-4">  -d {`'{"items":[{"sku":"sku_tea","qty":1}]}'`}</div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Features */}
-        <div className="max-w-5xl mx-auto mt-32">
-          <h2 className="text-4xl font-bold text-white text-center mb-12">
+        <section className="max-w-5xl mx-auto py-20">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
             Why PEAC Receipts?
           </h2>
 
@@ -220,60 +237,54 @@ export default function Home() {
                 description: 'x402 today. Same receipt format works with any future payment rail.'
               }
             ].map((feature) => (
-              <div key={feature.title} className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
-                <h3 className="text-2xl font-semibold text-white mb-3">{feature.title}</h3>
-                <p className="text-white/80">{feature.description}</p>
+              <div key={feature.title} className="card p-8">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* CTA */}
-        <div className="max-w-3xl mx-auto mt-32 text-center bg-white/10 backdrop-blur-lg rounded-2xl p-12 border border-white/20">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Try It Now
-          </h2>
-          <p className="text-white/90 mb-8 text-lg">
-            Complete a real checkout with $0.05 USDC demo payment,
-            <br />
-            get a cryptographic receipt, verify it instantly.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/shop"
-              className="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all hover:scale-105 shadow-xl"
-            >
-              Open Shop Demo
-            </Link>
-            <Link
-              href="/verify/offline"
-              className="bg-purple-500/50 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-purple-500/70 transition-all border-2 border-white/30"
-            >
-              Verify Offline
-            </Link>
+        <section className="max-w-3xl mx-auto py-20 text-center">
+          <div className="card p-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Try It Now
+            </h2>
+            <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+              Complete a real checkout with $0.05 USDC demo payment,
+              <br />
+              get a cryptographic receipt, verify it instantly.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/shop" className="btn-primary text-base">
+                Open Shop Demo
+              </Link>
+              <Link href="/verify/offline" className="btn-secondary text-base">
+                Verify Offline
+              </Link>
+            </div>
           </div>
-        </div>
+        </section>
 
-        {/* Footer */}
-        <footer className="max-w-5xl mx-auto mt-32 pt-12 border-t border-white/20 text-center text-white/70">
+        <footer className="max-w-5xl mx-auto py-12 border-t border-gray-200 text-center text-gray-500">
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-6">
-            <Link href="/.well-known/peac.txt" className="hover:text-white transition-colors">
+            <Link href="/.well-known/peac.txt" className="hover:text-gray-900 transition-colors text-sm">
               peac.txt
             </Link>
-            <Link href="/aipref.json" className="hover:text-white transition-colors">
+            <Link href="/aipref.json" className="hover:text-gray-900 transition-colors text-sm">
               aipref.json
             </Link>
-            <Link href="/api/openapi.json" className="hover:text-white transition-colors">
+            <Link href="/api/openapi.json" className="hover:text-gray-900 transition-colors text-sm">
               openapi.json
             </Link>
-            <Link href="/api/verify" className="hover:text-white transition-colors">
+            <Link href="/api/verify" className="hover:text-gray-900 transition-colors text-sm">
               /api/verify
             </Link>
             <a
               href="https://github.com/peacprotocol/peac-x402-receipts-demo"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-gray-900 transition-colors text-sm"
             >
               GitHub
             </a>
@@ -281,7 +292,7 @@ export default function Home() {
               href="https://github.com/peacprotocol/peac-x402-receipts-demo/blob/main/LICENSE"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-gray-900 transition-colors text-sm"
             >
               Apache-2.0
             </a>
@@ -289,14 +300,14 @@ export default function Home() {
           <p className="text-sm mb-4">
             PEAC Protocol v0.9.11 · Demo amounts: $0.01–$0.05 USDC on Base
           </p>
-          <p className="text-xs text-white/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs text-gray-400 max-w-2xl mx-auto leading-relaxed">
             PEAC Protocol is an open-source project stewarded by Originary and the broader open-source community.
             <br />
             <a
               href="https://github.com/peacprotocol/peac/blob/main/CONTRIBUTING.md"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-white/80"
+              className="underline hover:text-gray-600"
             >
               Contribution guidelines
             </a>

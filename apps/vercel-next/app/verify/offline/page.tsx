@@ -46,47 +46,57 @@ export default function VerifyOfflinePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700">
-      <div className="container mx-auto px-6 py-8">
-        <div className="mb-8 text-center">
-          <Link href="/" className="text-white/80 hover:text-white text-sm">← Back to Home</Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-2">
+    <div className="min-h-screen">
+      <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+        <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="text-gray-900 font-bold text-xl">
+            PEAC × x402
+          </Link>
+          <Link href="/" className="text-gray-600 hover:text-gray-900 text-sm font-medium">
+            ← Back to Home
+          </Link>
+        </nav>
+      </header>
+
+      <div className="container mx-auto px-6 py-12">
+        <div className="mb-12 text-center max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Verify PEAC Receipt
           </h1>
-          <p className="text-white/90 text-lg">
+          <p className="text-xl text-gray-600">
             Paste a PEAC-Receipt JWS token to verify its authenticity
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-white/95 backdrop-blur-lg rounded-xl p-8">
+        <div className="max-w-4xl mx-auto card p-8">
           <div className="mb-6">
-            <label className="block text-lg font-semibold text-gray-700 mb-2">
+            <label className="block text-lg font-semibold text-gray-900 mb-3">
               PEAC-Receipt (JWS Token)
             </label>
             <textarea
               value={receipt}
               onChange={(e) => setReceipt(e.target.value)}
               placeholder="eyJhbGciOiJFZERTQSIsImtpZCI6InBlYWMtZGVtby1rZXktMSIsInR5cCI6InBlYWMtcmVjZWlwdCtqd3MifQ..."
-              className="w-full h-40 p-4 border-2 border-gray-300 rounded-lg font-mono text-sm focus:border-purple-500 focus:outline-none"
+              className="w-full h-40 p-4 border border-gray-300 rounded-lg font-mono text-sm focus:border-brand focus:ring-2 focus:ring-brand/20 focus:outline-none text-gray-900 bg-gray-50"
             />
           </div>
 
           <button
             onClick={verifyReceipt}
             disabled={loading || !receipt.trim()}
-            className="w-full bg-purple-600 text-white py-3 rounded-lg font-bold text-lg hover:bg-purple-700 transition-all hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full btn-primary text-lg py-3 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none"
           >
             {loading ? 'Verifying...' : 'Verify Receipt'}
           </button>
 
           {result && (
-            <div className={`mt-6 p-6 rounded-lg ${result.valid ? 'bg-green-50 border-2 border-green-500' : 'bg-red-50 border-2 border-red-500'}`}>
+            <div className={`mt-8 p-6 rounded-lg border-2 ${result.valid ? 'bg-green-50 border-success' : 'bg-red-50 border-error'}`}>
               <div className="flex items-center gap-3 mb-4">
-                <div className={`text-3xl ${result.valid ? 'text-green-600' : 'text-red-600'}`}>
-                  {result.valid ? '[Valid]' : '[Invalid]'}
+                <div className={`text-3xl font-bold ${result.valid ? 'text-success' : 'text-error'}`}>
+                  {result.valid ? '✓' : '✕'}
                 </div>
                 <div>
-                  <h3 className={`text-xl font-bold ${result.valid ? 'text-green-800' : 'text-red-800'}`}>
+                  <h3 className={`text-xl font-bold ${result.valid ? 'text-green-900' : 'text-red-900'}`}>
                     {result.valid ? 'Valid Receipt' : 'Invalid Receipt'}
                   </h3>
                   {result.message && (
@@ -99,40 +109,40 @@ export default function VerifyOfflinePage() {
 
               {result.valid && result.payload && (
                 <div className="mt-4">
-                  <h4 className="font-semibold text-gray-700 mb-2">Receipt Details:</h4>
-                  <div className="bg-white rounded-lg p-4 space-y-2 text-sm">
-                    <div className="grid grid-cols-3 gap-4">
+                  <h4 className="font-semibold text-gray-900 mb-3">Receipt Details:</h4>
+                  <div className="bg-white rounded-lg p-4 space-y-3 text-sm border border-gray-200">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
-                        <span className="text-gray-600">Subject:</span>
-                        <div className="font-semibold">{String(result.payload.subject || '')}</div>
+                        <span className="text-gray-600 text-xs">Subject:</span>
+                        <div className="font-semibold text-gray-900">{String(result.payload.subject || '')}</div>
                       </div>
                       <div>
-                        <span className="text-gray-600">Amount:</span>
-                        <div className="font-semibold">
+                        <span className="text-gray-600 text-xs">Amount:</span>
+                        <div className="font-semibold text-gray-900">
                           ${String((result.payload.payment as Record<string, unknown>)?.amount || '')} {String((result.payload.payment as Record<string, unknown>)?.currency || '')}
                         </div>
                       </div>
                       <div>
-                        <span className="text-gray-600">Chain:</span>
-                        <div className="font-semibold">{String((result.payload.payment as Record<string, unknown>)?.chain || '')}</div>
+                        <span className="text-gray-600 text-xs">Chain:</span>
+                        <div className="font-semibold text-gray-900">{String((result.payload.payment as Record<string, unknown>)?.chain || '')}</div>
                       </div>
                     </div>
 
                     <div>
-                      <span className="text-gray-600">Issued At:</span>
-                      <div className="font-mono text-xs">{String(result.payload.issued_at || '')}</div>
+                      <span className="text-gray-600 text-xs">Issued At:</span>
+                      <div className="font-mono text-xs text-gray-900">{String(result.payload.issued_at || '')}</div>
                     </div>
 
                     <div>
-                      <span className="text-gray-600">Response Hash:</span>
-                      <div className="font-mono text-xs break-all">{String((result.payload.response as Record<string, unknown>)?.body_sha256 || '')}</div>
+                      <span className="text-gray-600 text-xs">Response Hash:</span>
+                      <div className="font-mono text-xs break-all text-gray-900">{String((result.payload.response as Record<string, unknown>)?.body_sha256 || '')}</div>
                     </div>
 
                     <details className="mt-2">
-                      <summary className="cursor-pointer text-purple-600 font-semibold">
+                      <summary className="cursor-pointer text-brand font-semibold hover:text-brand-hover">
                         View Full Payload
                       </summary>
-                      <pre className="mt-2 p-4 bg-gray-50 rounded text-xs overflow-auto max-h-96">
+                      <pre className="mt-3 p-4 bg-gray-100 rounded-lg text-xs overflow-auto max-h-96 text-gray-900">
                         {JSON.stringify(result.payload, null, 2)}
                       </pre>
                     </details>
@@ -142,8 +152,8 @@ export default function VerifyOfflinePage() {
 
               {result.header && (
                 <div className="mt-4">
-                  <h4 className="font-semibold text-gray-700 mb-2">Protected Header:</h4>
-                  <pre className="bg-white rounded-lg p-4 text-xs overflow-auto">
+                  <h4 className="font-semibold text-gray-900 mb-2">Protected Header:</h4>
+                  <pre className="bg-white border border-gray-200 rounded-lg p-4 text-xs overflow-auto text-gray-900">
                     {JSON.stringify(result.header, null, 2)}
                   </pre>
                 </div>
@@ -152,32 +162,32 @@ export default function VerifyOfflinePage() {
           )}
         </div>
 
-        <div className="max-w-4xl mx-auto mt-8 bg-white/10 backdrop-blur-lg rounded-xl p-6 text-white">
-          <h3 className="text-xl font-bold mb-4">How Receipt Verification Works</h3>
-          <ol className="space-y-2 text-white/90">
-            <li className="flex gap-3">
-              <span className="font-bold">1.</span>
-              <span>Receipt is a cryptographically signed JWS (JSON Web Signature) token</span>
+        <div className="max-w-4xl mx-auto mt-12 card p-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">How Receipt Verification Works</h3>
+          <ol className="space-y-4 text-gray-700">
+            <li className="flex gap-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-bold">1</span>
+              <span className="pt-1">Receipt is a cryptographically signed JWS (JSON Web Signature) token</span>
             </li>
-            <li className="flex gap-3">
-              <span className="font-bold">2.</span>
-              <span>Signed with Ed25519 (EdDSA) private key held by the API provider</span>
+            <li className="flex gap-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-bold">2</span>
+              <span className="pt-1">Signed with Ed25519 (EdDSA) private key held by the API provider</span>
             </li>
-            <li className="flex gap-3">
-              <span className="font-bold">3.</span>
-              <span>Verification uses the public key from <code className="bg-white/20 px-1 rounded">/public-keys/[kid].json</code></span>
+            <li className="flex gap-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-bold">3</span>
+              <span className="pt-1">Verification uses the public key from <code className="bg-gray-100 px-2 py-0.5 rounded font-mono text-sm">/public-keys/[kid].json</code></span>
             </li>
-            <li className="flex gap-3">
-              <span className="font-bold">4.</span>
-              <span>Proves: payment was made, content was received, policy was agreed to</span>
+            <li className="flex gap-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-bold">4</span>
+              <span className="pt-1">Proves: payment was made, content was received, policy was agreed to</span>
             </li>
           </ol>
         </div>
 
-        <div className="max-w-4xl mx-auto mt-6 text-center">
+        <div className="max-w-4xl mx-auto mt-8 text-center">
           <Link
             href="/shop"
-            className="inline-block bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all hover:scale-105"
+            className="btn-primary text-base"
           >
             Try the Shop Demo →
           </Link>

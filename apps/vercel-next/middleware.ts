@@ -5,6 +5,12 @@ const CANON = 'x402.peacprotocol.org';
 
 export function middleware(req: NextRequest) {
   const host = req.headers.get('host') || '';
+
+  // Skip redirect for localhost
+  if (host.includes('localhost') || host.includes('127.0.0.1')) {
+    return NextResponse.next();
+  }
+
   if (host !== CANON) {
     return NextResponse.redirect(
       `https://${CANON}${req.nextUrl.pathname}${req.nextUrl.search}`,
