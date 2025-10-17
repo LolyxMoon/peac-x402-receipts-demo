@@ -27,7 +27,6 @@ export default function ShopPage() {
   useEffect(() => {
     fetchCatalog();
     createCart();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function fetchCatalog() {

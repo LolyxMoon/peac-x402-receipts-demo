@@ -7,7 +7,8 @@ import {
   signPeacReceipt,
   verifyX402Proof,
   nowIso,
-  type PeacReceiptPayload
+  type PeacReceiptPayload,
+  type SessionToken
 } from '@/lib/peac';
 import { sha256Hex, getPublicOrigin } from '@/lib/utils';
 
@@ -21,7 +22,7 @@ type CartItem = {
   qty: number;
 };
 
-const ORDER_CACHE = new Map<string, { order: any; receipt: string }>();
+const ORDER_CACHE = new Map<string, { order: Record<string, unknown>; receipt: string }>();
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,7 +44,7 @@ export async function POST(request: NextRequest) {
     const itemsStr = JSON.stringify(normalizedItems.sort((a, b) => a.sku.localeCompare(b.sku)));
     const itemsSha = sha256Hex(itemsStr);
 
-    let enrichedItems = [];
+    const enrichedItems = [];
     let grandTotal = 0;
 
     for (const item of normalizedItems) {
@@ -116,7 +117,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    let session: any;
+    let session: SessionToken;
     try {
       session = await verifySessionToken(sessionToken);
     } catch {

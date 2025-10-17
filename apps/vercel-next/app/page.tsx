@@ -184,13 +184,13 @@ export default function Home() {
             <div className="bg-black/30 rounded p-4 font-mono text-xs text-white/90 overflow-x-auto">
               <div className="mb-2"># Step 1: Attempt checkout</div>
               <div className="text-yellow-300">curl -X POST /api/shop/checkout-direct \</div>
-              <div className="text-yellow-300 ml-4">-d '{"{"}"items":[{"{"}"sku":"sku_tea","qty":1{"}"}]{"}"}'</div>
+              <div className="text-yellow-300 ml-4">  -d {`'{"items":[{"sku":"sku_tea","qty":1}]}'`}</div>
               <div className="mt-4 mb-2"># Step 2: Get session_id from 402 response, pay via x402</div>
               <div className="mt-4 mb-2"># Step 3: Retry with proof</div>
               <div className="text-pink-300">curl -X POST /api/shop/checkout-direct \</div>
-              <div className="text-pink-300 ml-4">-H "X-402-Session: $TOKEN" \</div>
-              <div className="text-pink-300 ml-4">-H "X-402-Proof: $PROOF_ID" \</div>
-              <div className="text-pink-300 ml-4">-d '{"{"}"items":[{"{"}"sku":"sku_tea","qty":1{"}"}]{"}"}'</div>
+              <div className="text-pink-300 ml-4">  -H {`"X-402-Session: $TOKEN"`} \</div>
+              <div className="text-pink-300 ml-4">  -H {`"X-402-Proof: $PROOF_ID"`} \</div>
+              <div className="text-pink-300 ml-4">  -d {`'{"items":[{"sku":"sku_tea","qty":1}]}'`}</div>
             </div>
           </div>
         </div>
