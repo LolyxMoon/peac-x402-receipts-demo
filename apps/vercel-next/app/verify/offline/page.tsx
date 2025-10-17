@@ -3,9 +3,17 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+type VerifyResult = {
+  valid: boolean;
+  error?: string;
+  message?: string;
+  payload?: Record<string, unknown>;
+  header?: Record<string, unknown>;
+};
+
 export default function VerifyOfflinePage() {
   const [receipt, setReceipt] = useState('');
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<VerifyResult | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function verifyReceipt() {
@@ -96,28 +104,28 @@ export default function VerifyOfflinePage() {
                     <div className="grid grid-cols-3 gap-4">
                       <div>
                         <span className="text-gray-600">Subject:</span>
-                        <div className="font-semibold">{result.payload.subject}</div>
+                        <div className="font-semibold">{String(result.payload.subject || '')}</div>
                       </div>
                       <div>
                         <span className="text-gray-600">Amount:</span>
                         <div className="font-semibold">
-                          ${result.payload.payment?.amount} {result.payload.payment?.currency}
+                          ${String((result.payload.payment as Record<string, unknown>)?.amount || '')} {String((result.payload.payment as Record<string, unknown>)?.currency || '')}
                         </div>
                       </div>
                       <div>
                         <span className="text-gray-600">Chain:</span>
-                        <div className="font-semibold">{result.payload.payment?.chain}</div>
+                        <div className="font-semibold">{String((result.payload.payment as Record<string, unknown>)?.chain || '')}</div>
                       </div>
                     </div>
 
                     <div>
                       <span className="text-gray-600">Issued At:</span>
-                      <div className="font-mono text-xs">{result.payload.issued_at}</div>
+                      <div className="font-mono text-xs">{String(result.payload.issued_at || '')}</div>
                     </div>
 
                     <div>
                       <span className="text-gray-600">Response Hash:</span>
-                      <div className="font-mono text-xs break-all">{result.payload.response?.body_sha256}</div>
+                      <div className="font-mono text-xs break-all">{String((result.payload.response as Record<string, unknown>)?.body_sha256 || '')}</div>
                     </div>
 
                     <details className="mt-2">
