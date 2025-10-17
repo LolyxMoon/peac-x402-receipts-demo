@@ -30,15 +30,33 @@ export default function ShopPage() {
   }, []);
 
   async function fetchCatalog() {
-    const res = await fetch('/api/shop/catalog');
-    const data = await res.json();
-    setCatalog(data.items || []);
+    try {
+      const res = await fetch('/api/shop/catalog');
+      if (!res.ok) {
+        console.error('Catalog fetch failed:', res.status, res.statusText);
+        setMessage(`Failed to load catalog: ${res.status}`);
+        return;
+      }
+      const data = await res.json();
+      setCatalog(data.items || []);
+    } catch (error) {
+      console.error('Catalog error:', error);
+      setMessage('Failed to load catalog');
+    }
   }
 
   async function createCart() {
-    const res = await fetch('/api/shop/cart', { method: 'POST' });
-    const data = await res.json();
-    setCartId(data.cart_id);
+    try {
+      const res = await fetch('/api/shop/cart', { method: 'POST' });
+      if (!res.ok) {
+        console.error('Cart creation failed:', res.status, res.statusText);
+        return;
+      }
+      const data = await res.json();
+      setCartId(data.cart_id);
+    } catch (error) {
+      console.error('Cart error:', error);
+    }
   }
 
   async function addToCart(sku: string) {
