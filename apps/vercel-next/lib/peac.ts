@@ -18,6 +18,7 @@ export type SessionToken = {
   chain: string;
   rail: 'x402';
   issued_at: string;
+  items_sha256?: string;
 };
 
 export type PeacReceiptPayload = {

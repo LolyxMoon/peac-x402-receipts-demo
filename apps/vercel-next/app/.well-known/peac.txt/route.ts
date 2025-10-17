@@ -13,6 +13,7 @@ export async function GET() {
     'provenance: c2pa',
     'receipts: required',
     'verify: /api/verify',
+    'openapi: /api/openapi.json',
     `public_keys: [{"kid":"${kid}","alg":"EdDSA","key":"/public-keys/${kid}.json"}]`
   ];
 
