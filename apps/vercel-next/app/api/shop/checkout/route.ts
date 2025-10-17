@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
     let session;
     try {
       session = await verifySessionToken(session_token);
-    } catch (error) {
+    } catch {
       return Response.json(
         { error: 'invalid_session', message: 'Session token verification failed' },
         { status: 400 }
@@ -196,8 +196,8 @@ export async function POST(request: NextRequest) {
         'Cache-Control': 'no-store'
       }
     });
-  } catch (error) {
-    console.error('Checkout error:', error);
+  } catch (checkoutError) {
+    console.error('Checkout error:', checkoutError);
     return Response.json(
       { error: 'internal_error', message: 'Checkout failed' },
       { status: 500 }

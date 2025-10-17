@@ -8,7 +8,7 @@ export type Money = {
   rail: 'x402'
 };
 
-export type AIPref = Record<string, any>;
+export type AIPref = Record<string, unknown>;
 
 export type SessionToken = {
   sid: string;
@@ -42,7 +42,7 @@ export type PeacReceiptPayload = {
     session_id: string;
     payer: string;
   };
-  order?: any;
+  order?: Record<string, unknown>;
   policy: {
     aipref_url: string;
     aipref_snapshot: AIPref;
@@ -64,8 +64,8 @@ export function getKid() {
 
 export function getPublicJWK(): JWK {
   const jwk = JSON.parse(process.env.PEAC_SIGNING_JWK!);
-  // Derive public key from private key by removing 'd' field
-  const { d, ...publicJwk } = jwk;
+  const publicJwk = { ...jwk };
+  delete publicJwk.d;
   return {
     ...publicJwk,
     kid: getKid(),
@@ -80,7 +80,7 @@ export function nowIso() {
 
 export async function signPeacReceipt(payload: PeacReceiptPayload): Promise<string> {
   const signer = await getSigner();
-  return await new SignJWT(payload as any)
+  return await new SignJWT(payload as Record<string, unknown>)
     .setProtectedHeader({ alg: 'EdDSA', kid: getKid(), typ: 'peac-receipt+jws' })
     .sign(signer);
 }
@@ -93,7 +93,7 @@ export async function verifyPeacReceipt(jws: string, jwkPub: JWK) {
 // Stateless 402 session token (JWS)
 export async function signSessionToken(session: SessionToken): Promise<string> {
   const signer = await getSigner();
-  return await new SignJWT(session as any)
+  return await new SignJWT(session as Record<string, unknown>)
     .setProtectedHeader({ alg: 'EdDSA', kid: getKid(), typ: 'peac-session+jws' })
     .sign(signer);
 }

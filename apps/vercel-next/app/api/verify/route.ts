@@ -27,17 +27,18 @@ export async function POST(request: NextRequest) {
         header: protectedHeader,
         payload
       });
-    } catch (error: any) {
+    } catch (verifyError) {
+      const message = verifyError instanceof Error ? verifyError.message : 'Receipt verification failed';
       return Response.json(
         {
           valid: false,
           error: 'verify_failed',
-          message: error.message || 'Receipt verification failed'
+          message
         },
         { status: 400 }
       );
     }
-  } catch (error) {
+  } catch {
     return Response.json(
       { valid: false, error: 'invalid_request' },
       { status: 400 }
