@@ -78,6 +78,9 @@ export default function ShopPage() {
       setCartItems(data.items);
       setMessage('Added to cart!');
       setTimeout(() => setMessage(''), 2000);
+    } else {
+      console.error('Unexpected response:', data);
+      setMessage('Error adding to cart');
     }
   }
 

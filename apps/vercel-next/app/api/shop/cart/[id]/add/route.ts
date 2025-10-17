@@ -35,5 +35,16 @@ export async function POST(
     );
   }
 
-  return Response.json({ cart });
+  // Enrich cart items with product details
+  const enrichedItems = cart.items.map(item => {
+    const product = getProduct(item.sku);
+    return {
+      sku: item.sku,
+      title: product?.title || 'Unknown',
+      price: product?.price_usd || 0,
+      qty: item.qty
+    };
+  });
+
+  return Response.json({ items: enrichedItems });
 }
