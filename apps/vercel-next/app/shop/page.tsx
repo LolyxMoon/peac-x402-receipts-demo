@@ -27,18 +27,23 @@ export default function ShopPage() {
   useEffect(() => {
     fetchCatalog();
     createCart();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function fetchCatalog() {
     try {
+      console.log('Fetching catalog...');
       const res = await fetch('/api/shop/catalog');
+      console.log('Catalog response:', res.status, res.ok);
       if (!res.ok) {
         console.error('Catalog fetch failed:', res.status, res.statusText);
         setMessage(`Failed to load catalog: ${res.status}`);
         return;
       }
       const data = await res.json();
+      console.log('Catalog data:', data);
       setCatalog(data.items || []);
+      console.log('Catalog set:', data.items?.length, 'items');
     } catch (error) {
       console.error('Catalog error:', error);
       setMessage('Failed to load catalog');
