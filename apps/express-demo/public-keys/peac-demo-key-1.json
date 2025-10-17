@@ -1,0 +1,8 @@
+{
+  "crv": "Ed25519",
+  "x": "ydTq6lFDXZB7f48iHPQhb_xfHZRumbjOJeWURqukGQA",
+  "kty": "OKP",
+  "kid": "peac-demo-key-1",
+  "alg": "EdDSA",
+  "use": "sig"
+}

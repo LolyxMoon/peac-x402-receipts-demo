@@ -1,0 +1,38 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "peac.originary.xyz"
+        }
+      ],
+      "destination": "https://x402.peacprotocol.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "demo.peacprotocol.org"
+        }
+      ],
+      "destination": "https://x402.peacprotocol.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.x402.peacprotocol.org"
+        }
+      ],
+      "destination": "https://x402.peacprotocol.org/:path*",
+      "permanent": true
+    }
+  ]
+}

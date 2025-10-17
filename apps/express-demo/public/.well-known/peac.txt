@@ -1,0 +1,8 @@
+# ≤20 lines, dev-phase: v0.9.11
+preferences: /aipref.json
+access_control: http-402
+payments: [x402]
+provenance: c2pa
+receipts: required
+verify: /verify
+public_keys: [{"kid":"peac-demo-key-1","alg":"EdDSA","key":"/public-keys/peac-demo-key-1.json"}]

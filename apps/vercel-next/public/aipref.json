@@ -1,0 +1,9 @@
+{
+  "version": "0.9.11",
+  "purpose": ["paid-access", "commerce", "auditability"],
+  "retention": {"max_days": 0},
+  "sharing": {"third_parties": false},
+  "payment": {"rail": "x402", "chain": "base", "currency": "USDC"},
+  "license": {"type": "purchase", "scope": "single-order", "refund_window_minutes": 0},
+  "security": {"sign": true, "verify": true}
+}

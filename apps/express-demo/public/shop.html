@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Shopper - x402 + PEAC Demo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+      color: #333;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .subtitle {
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      margin-bottom: 1.5rem;
+      color: #667eea;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 0.5rem;
+    }
+    .catalog {
+      display: grid;
+      gap: 1rem;
+    }
+    .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .product:hover {
+      border-color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+    }
+    .product-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .product-info .price {
+      color: #667eea;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .cart-items {
+      margin-bottom: 1rem;
+    }
+    .cart-item {
+      padding: 0.75rem;
+      background: #f5f5f5;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .cart-empty {
+      text-align: center;
+      color: #999;
+      padding: 2rem;
+      font-style: italic;
+    }
+    .cart-totals {
+      border-top: 2px solid #667eea;
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+    .cart-totals .total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 1rem;
+    }
+    #checkoutBtn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .payment-section {
+      background: #fff9e6;
+      border: 2px solid #ffc107;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .payment-section h3 {
+      color: #f57c00;
+      margin-bottom: 1rem;
+    }
+    .code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .input-group input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-family: monospace;
+    }
+    .success-section {
+      background: #e8f5e9;
+      border: 2px solid #4caf50;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .success-section h3 {
+      color: #2e7d32;
+      margin-bottom: 1rem;
+    }
+    .receipt-badge {
+      display: inline-block;
+      background: #4caf50;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-left: 0.5rem;
+    }
+    .verify-result {
+      background: white;
+      border: 2px solid #4caf50;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-top: 1rem;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .verify-result pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .ledger-link {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .ledger-link a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.2);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    .ledger-link a:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+    .status {
+      padding: 0.5rem;
+      border-radius: 4px;
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+    .status.error {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ef5350;
+    }
+    .status.info {
+      background: #e3f2fd;
+      color: #1565c0;
+      border: 1px solid #42a5f5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛒 Agent Shopper</h1>
+    <p class="subtitle">One-Click Cart Checkout with x402 + PEAC Receipts (Base/USDC)</p>
+
+    <div class="grid">
+      <!-- Catalog Section -->
+      <div class="card">
+        <h2>📦 Product Catalog</h2>
+        <div id="catalog" class="catalog">
+          <p style="text-align: center; color: #999;">Loading catalog...</p>
+        </div>
+      </div>
+
+      <!-- Cart Section -->
+      <div class="card">
+        <h2>🛍️ Your Cart</h2>
+        <div id="cart" class="cart-items">
+          <div class="cart-empty">Your cart is empty</div>
+        </div>
+        <div id="cartTotals" style="display: none;" class="cart-totals">
+          <div class="total">
+            <span>Total:</span>
+            <span id="totalAmount">$0.00</span>
+          </div>
+          <button id="checkoutBtn">Checkout with x402</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Section (hidden initially) -->
+    <div id="paymentSection" class="card payment-section" style="display: none;">
+      <h3>💳 Payment Required (HTTP 402)</h3>
+      <p><strong>Session ID:</strong> <code id="sessionId"></code></p>
+      <p><strong>Amount:</strong> <code id="paymentAmount"></code> USDC on Base</p>
+
+      <div class="code-block" id="paymentCommand"></div>
+
+      <div class="input-group">
+        <input type="text" id="proofInput" placeholder="Paste your x402 proof_id here (or use demo-pay-ok-123)" />
+        <button onclick="completePayment()">Complete Payment</button>
+      </div>
+      <div id="paymentStatus"></div>
+    </div>
+
+    <!-- Success Section (hidden initially) -->
+    <div id="successSection" class="card success-section" style="display: none;">
+      <h3>✅ Order Complete <span class="receipt-badge">PEAC-RECEIPT</span></h3>
+      <p><strong>Order ID:</strong> <code id="orderId"></code></p>
+      <div id="orderDetails"></div>
+
+      <h4 style="margin-top: 1.5rem;">🔐 Cryptographic Receipt</h4>
+      <div class="code-block" id="receiptJws" style="max-height: 150px; overflow-y: auto; font-size: 0.75rem;"></div>
+
+      <button onclick="verifyReceipt()" style="margin-top: 1rem;">Verify Receipt</button>
+      <div id="verifyResult"></div>
+    </div>
+
+    <div class="ledger-link">
+      <a href="/shop/ledger" target="_blank">📊 View Sales Ledger</a>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = window.location.origin;
+    let cartId = localStorage.getItem('cartId');
+    let currentSession = null;
+    let currentReceipt = null;
+
+    // Initialize
+    async function init() {
+      await loadCatalog();
+      if (!cartId) {
+        await createCart();
+      } else {
+        await loadCart();
+      }
+    }
+
+    async function loadCatalog() {
+      try {
+        const res = await fetch(`${API_BASE}/shop/catalog`);
+        const data = await res.json();
+        renderCatalog(data.items);
+      } catch (err) {
+        console.error('Failed to load catalog:', err);
+      }
+    }
+
+    function renderCatalog(items) {
+      const catalogEl = document.getElementById('catalog');
+      catalogEl.innerHTML = items.map(item => `
+        <div class="product">
+          <div class="product-info">
+            <h3>${item.title}</h3>
+            <div class="price">$${item.price_usd.toFixed(2)} USD</div>
+          </div>
+          <button onclick="addToCart('${item.sku}')">Add to Cart</button>
+        </div>
+      `).join('');
+    }
+
+    async function createCart() {
+      try {
+        const res = await fetch(`${API_BASE}/shop/cart`, { method: 'POST' });
+        const data = await res.json();
+        cartId = data.cart_id;
+        localStorage.setItem('cartId', cartId);
+      } catch (err) {
+        console.error('Failed to create cart:', err);
+      }
+    }
+
+    async function loadCart() {
+      try {
+        const res = await fetch(`${API_BASE}/shop/cart/${cartId}`);
+        if (!res.ok) {
+          await createCart();
+          return;
+        }
+        const data = await res.json();
+        renderCart(data.cart);
+      } catch (err) {
+        console.error('Failed to load cart:', err);
+      }
+    }
+
+    async function addToCart(sku) {
+      if (!cartId) await createCart();
+
+      try {
+        const res = await fetch(`${API_BASE}/shop/cart/${cartId}/add`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sku, qty: 1 })
+        });
+        const data = await res.json();
+        renderCart(data.cart);
+      } catch (err) {
+        console.error('Failed to add to cart:', err);
+      }
+    }
+
+    function renderCart(cart) {
+      const cartEl = document.getElementById('cart');
+      const totalsEl = document.getElementById('cartTotals');
+
+      if (!cart.items || cart.items.length === 0) {
+        cartEl.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+        totalsEl.style.display = 'none';
+        return;
+      }
+
+      // Group items by SKU
+      const grouped = {};
+      cart.items.forEach(item => {
+        if (!grouped[item.sku]) {
+          grouped[item.sku] = { sku: item.sku, qty: 0 };
+        }
+        grouped[item.sku].qty += item.qty;
+      });
+
+      cartEl.innerHTML = Object.values(grouped).map(item => `
+        <div class="cart-item">
+          <span>${item.sku} × ${item.qty}</span>
+        </div>
+      `).join('');
+
+      totalsEl.style.display = 'block';
+    }
+
+    async function checkout() {
+      if (!cartId) {
+        alert('Cart not found');
+        return;
+      }
+
+      document.getElementById('checkoutBtn').disabled = true;
+
+      try {
+        const res = await fetch(`${API_BASE}/shop/checkout`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cart_id: cartId })
+        });
+
+        const data = await res.json();
+
+        if (res.status === 402) {
+          // Payment required
+          currentSession = data.x402.session_id;
+          showPaymentSection(data);
+        } else if (res.status === 200) {
+          // Success (shouldn't happen on first call)
+          const receipt = res.headers.get('PEAC-Receipt');
+          showSuccess(data, receipt);
+        } else {
+          showError('Checkout failed: ' + (data.message || 'Unknown error'));
+        }
+      } catch (err) {
+        showError('Checkout error: ' + err.message);
+      } finally {
+        document.getElementById('checkoutBtn').disabled = false;
+      }
+    }
+
+    function showPaymentSection(data) {
+      const section = document.getElementById('paymentSection');
+      document.getElementById('sessionId').textContent = data.x402.session_id;
+      document.getElementById('paymentAmount').textContent = data.x402.amount_usd;
+
+      const cmd = `x402 pay --to ${API_BASE}/shop/checkout --session ${data.x402.session_id} --network base --amount ${data.x402.amount_usd} --currency USDC`;
+      document.getElementById('paymentCommand').textContent = cmd;
+
+      section.style.display = 'block';
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function completePayment() {
+      const proofId = document.getElementById('proofInput').value.trim();
+      if (!proofId) {
+        showPaymentStatus('Please enter a proof_id', 'error');
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/shop/checkout`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-402-Session': currentSession,
+            'X-402-Proof': proofId
+          },
+          body: JSON.stringify({ cart_id: cartId })
+        });
+
+        const data = await res.json();
+
+        if (res.status === 200) {
+          const receipt = res.headers.get('PEAC-Receipt');
+          showSuccess(data, receipt);
+
+          // Clear cart
+          localStorage.removeItem('cartId');
+          cartId = null;
+          await createCart();
+        } else {
+          showPaymentStatus('Payment failed: ' + (data.message || 'Invalid proof'), 'error');
+        }
+      } catch (err) {
+        showPaymentStatus('Payment error: ' + err.message, 'error');
+      }
+    }
+
+    function showPaymentStatus(msg, type) {
+      const status = document.getElementById('paymentStatus');
+      status.innerHTML = `<div class="status ${type}">${msg}</div>`;
+    }
+
+    function showSuccess(order, receipt) {
+      currentReceipt = receipt;
+
+      document.getElementById('paymentSection').style.display = 'none';
+      const section = document.getElementById('successSection');
+
+      document.getElementById('orderId').textContent = order.order_id;
+      document.getElementById('orderDetails').innerHTML = `
+        <p><strong>Items:</strong></p>
+        <ul>${order.items.map(item => `<li>${item.sku} × ${item.qty} @ $${item.unit_price_usd}</li>`).join('')}</ul>
+        <p><strong>Total:</strong> $${order.totals.grand_total} USD</p>
+        <p><strong>Created:</strong> ${new Date(order.created_at).toLocaleString()}</p>
+      `;
+
+      document.getElementById('receiptJws').textContent = receipt;
+
+      section.style.display = 'block';
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function verifyReceipt() {
+      if (!currentReceipt) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/verify`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ receipt: currentReceipt })
+        });
+
+        const data = await res.json();
+
+        const resultEl = document.getElementById('verifyResult');
+        resultEl.innerHTML = `
+          <div class="verify-result">
+            <h4 style="color: ${data.valid ? '#2e7d32' : '#c62828'}; margin-bottom: 0.5rem;">
+              ${data.valid ? '✅ Valid' : '❌ Invalid'}
+            </h4>
+            <pre>${JSON.stringify(data, null, 2)}</pre>
+          </div>
+        `;
+      } catch (err) {
+        console.error('Verify failed:', err);
+      }
+    }
+
+    function showError(msg) {
+      alert(msg);
+    }
+
+    // Event listeners
+    document.getElementById('checkoutBtn').addEventListener('click', checkout);
+
+    // Initialize on load
+    init();
+  </script>
+</body>
+</html>
