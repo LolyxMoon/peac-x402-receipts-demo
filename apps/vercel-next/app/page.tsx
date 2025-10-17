@@ -269,9 +269,37 @@ export default function Home() {
             <Link href="/api/verify" className="hover:text-white transition-colors">
               /api/verify
             </Link>
+            <a
+              href="https://github.com/peacprotocol/peac-x402-receipts-demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://github.com/peacprotocol/peac-x402-receipts-demo/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Apache-2.0
+            </a>
           </div>
-          <p className="text-sm">
+          <p className="text-sm mb-4">
             PEAC Protocol v0.9.11 · Demo amounts: $0.01–$0.05 USDC on Base
+          </p>
+          <p className="text-xs text-white/60 max-w-2xl mx-auto leading-relaxed">
+            PEAC Protocol is an open-source project stewarded by Originary and the broader open-source community.
+            <br />
+            <a
+              href="https://github.com/peacprotocol/peac/blob/main/CONTRIBUTING.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-white/80"
+            >
+              Contribution guidelines
+            </a>
           </p>
         </footer>
       </main>
