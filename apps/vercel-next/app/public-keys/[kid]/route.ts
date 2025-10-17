@@ -22,7 +22,7 @@ export async function GET(
   return Response.json(publicJwk, {
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, max-age=3600'
+      'Cache-Control': 'public, max-age=86400, immutable'
     }
   });
 }

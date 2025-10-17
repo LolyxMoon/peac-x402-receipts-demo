@@ -1,27 +1,27 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://x402.peacprotocol.org';
-  const now = new Date();
+  const lastMod = new Date();
 
   return [
     {
       url: `${base}/`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 1.0,
+      lastModified: lastMod,
+      changeFrequency: 'weekly',
+      priority: 1
     },
     {
       url: `${base}/shop`,
-      lastModified: now,
+      lastModified: lastMod,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.8
     },
     {
       url: `${base}/verify/offline`,
-      lastModified: now,
+      lastModified: lastMod,
       changeFrequency: 'monthly',
-      priority: 0.6,
-    },
+      priority: 0.6
+    }
   ];
 }

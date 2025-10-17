@@ -47,7 +47,13 @@ export function addToCart(cart_id: string, sku: string, qty: number): Cart | nul
   const product = getProduct(sku);
   if (!product) return null;
 
-  cart.items.push({ sku, qty });
+  const existingItem = cart.items.find(item => item.sku === sku);
+  if (existingItem) {
+    existingItem.qty += qty;
+  } else {
+    cart.items.push({ sku, qty });
+  }
+
   CART_STORE.set(cart_id, cart);
   return cart;
 }

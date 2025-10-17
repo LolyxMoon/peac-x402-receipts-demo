@@ -76,14 +76,14 @@ export default function VerifyOfflinePage() {
             disabled={loading || !receipt.trim()}
             className="w-full bg-purple-600 text-white py-3 rounded-lg font-bold text-lg hover:bg-purple-700 transition-all hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none"
           >
-            {loading ? '⏳ Verifying...' : '🔍 Verify Receipt'}
+            {loading ? 'Verifying...' : 'Verify Receipt'}
           </button>
 
           {result && (
             <div className={`mt-6 p-6 rounded-lg ${result.valid ? 'bg-green-50 border-2 border-green-500' : 'bg-red-50 border-2 border-red-500'}`}>
               <div className="flex items-center gap-3 mb-4">
                 <div className={`text-3xl ${result.valid ? 'text-green-600' : 'text-red-600'}`}>
-                  {result.valid ? '✅' : '❌'}
+                  {result.valid ? '[Valid]' : '[Invalid]'}
                 </div>
                 <div>
                   <h3 className={`text-xl font-bold ${result.valid ? 'text-green-800' : 'text-red-800'}`}>

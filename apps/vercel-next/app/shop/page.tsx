@@ -99,7 +99,7 @@ export default function ShopPage() {
       const data = await res.json();
 
       if (res.status === 402) {
-        setMessage(`💳 Payment Required: $${data.x402.amount_usd} USDC. Using demo token...`);
+        setMessage(`Payment Required: $${data.x402.amount_usd} USDC. Using demo token...`);
 
         setTimeout(async () => {
           const paidRes = await fetch('/api/shop/checkout', {
@@ -117,21 +117,21 @@ export default function ShopPage() {
             const order = await paidRes.json();
 
             setReceipt(receiptJws || '');
-            setMessage(`✅ Order ${order.order_id} complete! Receipt received.`);
+            setMessage(`Order ${order.order_id} complete! Receipt received.`);
             setCartItems([]);
 
             await createCart();
           } else {
-            setMessage('❌ Payment verification failed');
+            setMessage('Payment verification failed');
           }
           setLoading(false);
         }, 1000);
       } else {
-        setMessage('❌ Checkout failed');
+        setMessage('Checkout failed');
         setLoading(false);
       }
     } catch (error) {
-      setMessage('❌ Error: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      setMessage('Error: ' + (error instanceof Error ? error.message : 'Unknown error'));
       setLoading(false);
     }
   }
@@ -220,7 +220,7 @@ export default function ShopPage() {
                     disabled={loading || cartItems.length === 0}
                     className="w-full bg-purple-600 text-white py-3 rounded-lg font-bold text-lg hover:bg-purple-700 transition-all hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none"
                   >
-                    {loading ? '⏳ Processing...' : '💳 Checkout with x402'}
+                    {loading ? 'Processing...' : 'Checkout with x402'}
                   </button>
                 </div>
               </>
@@ -238,7 +238,7 @@ export default function ShopPage() {
         {receipt && (
           <div className="max-w-6xl mx-auto mt-6 bg-white/95 backdrop-blur-lg rounded-xl p-6">
             <h2 className="text-2xl font-bold text-purple-600 mb-4">
-              🧾 PEAC Receipt (JWS)
+              PEAC Receipt (JWS)
             </h2>
             <textarea
               readOnly
@@ -262,9 +262,11 @@ export default function ShopPage() {
           </div>
         )}
 
-        <div className="max-w-6xl mx-auto mt-8 text-center text-white/80 text-sm">
-          <p>Demo Mode: Using token &quot;demo-pay-ok-123&quot; • No real payment required</p>
-        </div>
+        {process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && (
+          <div className="max-w-6xl mx-auto mt-8 text-center text-white/80 text-sm">
+            <p>Demo Mode: Using token &quot;demo-pay-ok-123&quot; - No real payment required</p>
+          </div>
+        )}
       </div>
     </div>
   );

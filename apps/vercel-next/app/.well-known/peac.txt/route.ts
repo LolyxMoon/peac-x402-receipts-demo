@@ -19,7 +19,7 @@ export async function GET() {
   return new Response(lines.join('\n'), {
     headers: {
       'Content-Type': 'text/plain',
-      'Cache-Control': 'public, max-age=3600'
+      'Cache-Control': 'public, max-age=300'
     }
   });
 }
