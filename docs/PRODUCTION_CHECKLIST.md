@@ -62,6 +62,26 @@ docs/artifacts/YYYY-MM-DD/
 - SSL certificate valid and auto-renewing
 - HSTS enabled
 
+### www Subdomain Redirect Setup
+
+To redirect www.x402.peacprotocol.org to x402.peacprotocol.org:
+
+1. **DNS Configuration** (in your DNS provider, e.g., Namecheap):
+   - Add CNAME record: `www` → `cname.vercel-dns.com`
+
+2. **Vercel Domain Configuration**:
+   - Go to Project Settings → Domains
+   - Add domain: `www.x402.peacprotocol.org`
+   - Set redirect to: `x402.peacprotocol.org` (308 Permanent)
+   - Enable "Redirect to HTTPS"
+
+3. **Verification**:
+   ```bash
+   curl -I https://www.x402.peacprotocol.org
+   # Should return: 308 Permanent Redirect
+   # Location: https://x402.peacprotocol.org/
+   ```
+
 ## Monitoring
 
 Post-deployment:

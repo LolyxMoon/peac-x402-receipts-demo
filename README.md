@@ -36,7 +36,7 @@ npm run dev
 /docs
   demo-shotlist.md   # Recording script
   receipts-spec.md   # PEAC-Receipt JWS schema
-LICENSE (MIT)
+LICENSE (Apache-2.0)
 README.md
 ```
 
@@ -52,7 +52,7 @@ README.md
 
 ```json
 {
-  "receipt_version": "0.9.11",
+  "receipt_version": "0.9.14",
   "issued_at": "2025-01-15T12:00:00Z",
   "subject": "order",
   "request": {"method": "POST", "path": "/api/shop/checkout"},
@@ -131,7 +131,7 @@ See [apps/vercel-next/README.md](apps/vercel-next/README.md) for deployment inst
 
 ## Specification
 
-- **PEAC Protocol**: v0.9.11 (dev-phase)
+- **PEAC Protocol**: v0.9.14 (dev-phase)
 - **Payment Rail**: x402 (HTTP 402 + on-chain verification)
 - **Signature**: EdDSA (Ed25519)
 - **Receipt Format**: JWS (JSON Web Signature)
