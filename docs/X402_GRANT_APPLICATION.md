@@ -11,10 +11,10 @@ PEAC Protocol v0.9.14 - x402 Demo
 - GitHub: @[YourGitHub]
 
 ## Project URLs
-- Live Demo: https://x402.peacprotocol.org
+- Live Demo: https://2larp402.vercel.app/
 - GitHub Repo: https://github.com/peacprotocol/peac-x402-receipts-demo
 - Protocol Codebase: https://github.com/peacprotocol/peac (v0.9.14)
-- Integration Docs: https://x402.peacprotocol.org/docs/mcp-integration
+- Integration Docs: https://2larp402.vercel.app//docs/mcp-integration
 
 ## One-Paragraph Summary
 
@@ -156,7 +156,7 @@ Availability: Weekdays 9am-5pm PT
 ---
 
 **Attachments**:
-- Live demo URL: https://x402.peacprotocol.org
+- Live demo URL: https://2larp402.vercel.app/
 - Smoke test results: docs/artifacts/[DATE]/
 - Architecture diagram: (optional)
 - Demo video: (when ready)

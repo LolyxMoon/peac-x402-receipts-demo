@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://x402.peacprotocol.org'),
+  metadataBase: new URL('https://2larp402.vercel.app/'),
   title: "x402 + PEAC | Verifiable Receipts for Paid API Calls",
   description: "Every 200 OK comes with a cryptographic receipt. Agent-to-agent commerce with HTTP 402 payments on Base/USDC.",
   alternates: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "x402 + PEAC | Verifiable Receipts for Paid API Calls",
     description: "Agent-to-agent commerce with verifiable receipts. Try the live demo.",
-    url: "https://x402.peacprotocol.org",
+    url: "https://2larp402.vercel.app/",
     siteName: "PEAC Protocol",
     type: "website",
   },

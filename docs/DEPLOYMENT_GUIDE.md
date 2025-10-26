@@ -68,7 +68,7 @@ git push origin v0.9.14-demo1
 Go to Vercel dashboard > peac-x402-receipts-demo > Settings > Environment Variables
 
 Required for Production:
-- `PUBLIC_ORIGIN` = `https://x402.peacprotocol.org`
+- `PUBLIC_ORIGIN` = `https://2larp402.vercel.app/`
 - `PEAC_KID` = `peac-demo-key-1`
 - `PEAC_PRIVATE_KEY_BASE64` = [your EdDSA private key]
 - `X402_CHAIN` = `base`
@@ -98,7 +98,7 @@ Watch build logs. Expected: Build succeeds, all routes generated, no errors.
 
 ### 1. Run Smoke Test Against Production
 ```bash
-BASE_URL=https://x402.peacprotocol.org ./scripts/smoke-test.sh
+BASE_URL=https://2larp402.vercel.app/ ./scripts/smoke-test.sh
 ```
 
 Expected output:
@@ -121,7 +121,7 @@ DATE=$(date +%Y-%m-%d)
 mkdir -p docs/artifacts/$DATE
 
 # Save smoke test output
-BASE_URL=https://x402.peacprotocol.org ./scripts/smoke-test.sh > docs/artifacts/$DATE/smoke-test-output.txt
+BASE_URL=https://2larp402.vercel.app/ ./scripts/smoke-test.sh > docs/artifacts/$DATE/smoke-test-output.txt
 
 # Save sample order and receipt (from headless buyer agent)
 cd agents/headless-buyer
@@ -141,15 +141,15 @@ git push
 ### 3. Manual Verification Checklist
 
 Visit in browser:
-- [ ] Homepage loads: https://x402.peacprotocol.org
+- [ ] Homepage loads: https://2larp402.vercel.app/
 - [ ] MCP section visible with NEW badge
 - [ ] Copy button works on curl example
 - [ ] Navigation to /docs/mcp-integration works
 - [ ] Integration guide renders correctly
-- [ ] Shop demo loads: https://x402.peacprotocol.org/shop
-- [ ] Verify page loads: https://x402.peacprotocol.org/verify/offline
-- [ ] peac.txt accessible: https://x402.peacprotocol.org/.well-known/peac.txt
-- [ ] OpenAPI accessible: https://x402.peacprotocol.org/api/openapi.json
+- [ ] Shop demo loads: https://2larp402.vercel.app//shop
+- [ ] Verify page loads: https://2larp402.vercel.app//verify/offline
+- [ ] peac.txt accessible: https://2larp402.vercel.app//.well-known/peac.txt
+- [ ] OpenAPI accessible: https://2larp402.vercel.app//api/openapi.json
 - [ ] Footer shows v0.9.14
 
 ## GitHub Release
@@ -200,7 +200,7 @@ Submit via x402 grant portal (when available) or email to designated address.
 
 ### 1. Setup
 - Clean terminal: `cd agents/headless-buyer && rm -rf out/ && clear`
-- Open browser: https://x402.peacprotocol.org
+- Open browser: https://2larp402.vercel.app/
 - Position: Browser (left 50%), Terminal (right 50%)
 - Start recording (QuickTime: Cmd+Shift+5)
 

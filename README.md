@@ -1,6 +1,6 @@
 # PEAC × x402: Verifiable Receipts for Paid API Calls
 
-**Live Demo:** [x402.peacprotocol.org](https://x402.peacprotocol.org)
+**Live Demo:** [x402.peacprotocol.org](https://2larp402.vercel.app/)
 
 Every `200 OK` with a cryptographic receipt. Pay with x402 (Base/USDC) and get portable proof of purchase.
 
@@ -81,7 +81,7 @@ README.md
 ### Test 402 Challenge
 
 ```bash
-curl https://x402.peacprotocol.org/api/shop/checkout \
+curl https://2larp402.vercel.app//api/shop/checkout \
   -H "Content-Type: application/json" \
   -d '{"cart_id":"cart_xyz"}' | jq .
 ```
@@ -89,7 +89,7 @@ curl https://x402.peacprotocol.org/api/shop/checkout \
 ### Test with Demo Token
 
 ```bash
-curl -i https://x402.peacprotocol.org/api/shop/checkout \
+curl -i https://2larp402.vercel.app//api/shop/checkout \
   -H "Content-Type: application/json" \
   -H "X-402-Session: <session_token>" \
   -H "X-402-Proof: demo-pay-ok-123" \
@@ -99,7 +99,7 @@ curl -i https://x402.peacprotocol.org/api/shop/checkout \
 ### Verify Receipt
 
 ```bash
-curl -X POST https://x402.peacprotocol.org/api/verify \
+curl -X POST https://2larp402.vercel.app//api/verify \
   -H "Content-Type: application/json" \
   -d '{"receipt":"<JWS>"}' | jq .
 ```

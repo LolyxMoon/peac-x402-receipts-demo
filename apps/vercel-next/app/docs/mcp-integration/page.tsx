@@ -71,7 +71,7 @@ export default function McpIntegrationPage() {
   },
   "session_token": "eyJhbGciOiJFZERTQSIs...",
   "peac": {
-    "policy": "https://x402.peacprotocol.org/.well-known/peac.txt",
+    "policy": "https://2larp402.vercel.app//.well-known/peac.txt",
     "receipts": "required"
   }
 }`}</pre>

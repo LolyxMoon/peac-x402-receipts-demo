@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://x402.peacprotocol.org';
+  const base = 'https://2larp402.vercel.app/';
   const lastMod = new Date();
 
   return [

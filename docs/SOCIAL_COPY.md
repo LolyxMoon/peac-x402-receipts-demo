@@ -9,7 +9,7 @@ MCP pays. PEAC proves.
 
 Portable, policy-bound receipts for any x402 endpoint.
 
-Live: https://x402.peacprotocol.org
+Live: https://2larp402.vercel.app/
 Repo: github.com/peacprotocol/peac-x402-receipts-demo
 
 ### Tweet 2 (Technical Details)
@@ -33,7 +33,7 @@ All with independent verification. No trust required.
 ### Tweet 4 (Call to Action)
 Open source (Apache-2.0). Reference implementation for any publisher building x402-gated APIs.
 
-Try the demo: https://x402.peacprotocol.org/docs/mcp-integration
+Try the demo: https://2larp402.vercel.app//docs/mcp-integration
 
 Built on: @CoinbaseDev Payments MCP + x402 protocol
 
@@ -44,7 +44,7 @@ MCP pays. PEAC proves.
 
 Every paid API call returns a verifiable receipt with policy snapshot and response hash. Works with Coinbase Payments MCP.
 
-Live: https://x402.peacprotocol.org
+Live: https://2larp402.vercel.app/
 
 ## LinkedIn Post
 
@@ -64,7 +64,7 @@ The insight: Payments MCP solves buyer infrastructure (wallets, onramps, payment
 **Why it matters:**
 As AI agents gain payment capability through MCP, publishers and enterprises will need verifiable proof of delivery. PEAC receipts provide that without requiring trust or centralized verification.
 
-**Live demo:** https://x402.peacprotocol.org
+**Live demo:** https://2larp402.vercel.app/
 **Open source:** github.com/peacprotocol/peac-x402-receipts-demo
 **License:** Apache-2.0
 
@@ -102,7 +102,7 @@ Use cases:
 - Enterprise audit trails for paid APIs
 - Marketplace readiness with machine discovery
 
-Live demo: https://x402.peacprotocol.org
+Live demo: https://2larp402.vercel.app/
 Source: https://github.com/peacprotocol/peac-x402-receipts-demo
 License: Apache-2.0
 
@@ -133,9 +133,9 @@ PEAC turns every paid API response into a cryptographic receipt. Works with Coin
 Next.js, TypeScript, EdDSA, USDC on Base, x402 protocol
 
 **Links:**
-Website: https://x402.peacprotocol.org
+Website: https://2larp402.vercel.app/
 GitHub: https://github.com/peacprotocol/peac-x402-receipts-demo
-Docs: https://x402.peacprotocol.org/docs/mcp-integration
+Docs: https://2larp402.vercel.app//docs/mcp-integration
 
 ## Email to @MurrLincoln (Coinbase)
 
@@ -147,7 +147,7 @@ We are applying for an x402 micro-grant. Our live demo shows x402-gated API call
 
 **What is live today:**
 
-- Merchant API at https://x402.peacprotocol.org with peac.txt, OpenAPI, stateless 402, and verify
+- Merchant API at https://2larp402.vercel.app/ with peac.txt, OpenAPI, stateless 402, and verify
 - Works with Payments MCP. Agents can call checkout-direct, hit 402, MCP pays via x402, then retry to receive a PEAC receipt
 - Repo: https://github.com/peacprotocol/peac-x402-receipts-demo
 - Protocol codebase is PEAC v0.9.14: https://github.com/peacprotocol/peac
@@ -191,8 +191,8 @@ Just released v0.9.14 of our x402 demo. It pairs Coinbase's new Payments MCP (bu
 - Enterprises get audit trails without trust
 
 **Try it:**
-- Live demo: https://x402.peacprotocol.org
-- Docs: https://x402.peacprotocol.org/docs/mcp-integration
+- Live demo: https://2larp402.vercel.app/
+- Docs: https://2larp402.vercel.app//docs/mcp-integration
 - Source: https://github.com/peacprotocol/peac-x402-receipts-demo
 
 Built with Next.js, TypeScript, EdDSA signatures. Apache-2.0 licensed.

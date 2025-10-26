@@ -49,8 +49,8 @@ DEMO_MODE=true
 DEMO_TOKEN=demo-pay-ok-123
 X402_CHAIN=base
 X402_CURRENCY=USDC
-PUBLIC_ORIGIN=https://x402.peacprotocol.org
-NEXT_PUBLIC_ORIGIN=https://x402.peacprotocol.org
+PUBLIC_ORIGIN=https://2larp402.vercel.app/
+NEXT_PUBLIC_ORIGIN=https://2larp402.vercel.app/
 ```
 
 For production x402 payments:
@@ -129,7 +129,7 @@ Configure in `vercel.json`:
   "redirects": [
     {
       "source": "https://demo.peacprotocol.org/:path*",
-      "destination": "https://x402.peacprotocol.org/:path*",
+      "destination": "https://2larp402.vercel.app//:path*",
       "permanent": true
     }
   ]
@@ -140,15 +140,15 @@ Configure in `vercel.json`:
 
 ```bash
 # Test discovery
-curl https://x402.peacprotocol.org/.well-known/peac.txt
+curl https://2larp402.vercel.app//.well-known/peac.txt
 
 # Test 402 challenge
-curl https://x402.peacprotocol.org/api/shop/checkout \
+curl https://2larp402.vercel.app//api/shop/checkout \
   -H "Content-Type: application/json" \
   -d '{"cart_id":"cart_xyz"}'
 
 # Test with demo token
-curl -i https://x402.peacprotocol.org/api/shop/checkout \
+curl -i https://2larp402.vercel.app//api/shop/checkout \
   -H "Content-Type: application/json" \
   -H "X-402-Session: <session_token>" \
   -H "X-402-Proof: demo-pay-ok-123" \

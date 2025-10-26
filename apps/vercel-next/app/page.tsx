@@ -210,7 +210,7 @@ export default function Home() {
                 </p>
               </div>
               <CopyButton
-                text={`curl -X POST https://x402.peacprotocol.org/api/shop/checkout-direct -H "Content-Type: application/json" -d '{"items":[{"sku":"sku_tea","qty":1}]}'`}
+                text={`curl -X POST https://2larp402.vercel.app//api/shop/checkout-direct -H "Content-Type: application/json" -d '{"items":[{"sku":"sku_tea","qty":1}]}'`}
                 label="Copy curl"
               />
             </div>
@@ -292,7 +292,7 @@ export default function Home() {
               <h4 className="font-semibold text-gray-900 mb-3">Try It in Claude Desktop</h4>
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
                 <p className="text-sm text-gray-700 font-mono">
-                  &gt; &quot;Buy 1 tea from https://x402.peacprotocol.org/api/shop/checkout-direct and show me the receipt&quot;
+                  &gt; &quot;Buy 1 tea from https://2larp402.vercel.app//api/shop/checkout-direct and show me the receipt&quot;
                 </p>
               </div>
               <p className="text-sm text-gray-600 mb-4">

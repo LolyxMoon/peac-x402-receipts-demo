@@ -85,7 +85,7 @@ git push origin v0.9.14-demo1
 # Or manually trigger in Vercel dashboard
 
 # 5. Verify production
-BASE_URL=https://x402.peacprotocol.org ./scripts/smoke-test.sh
+BASE_URL=https://2larp402.vercel.app/ ./scripts/smoke-test.sh
 
 # 6. Save artifacts
 DATE=$(date +%Y-%m-%d)
@@ -127,7 +127,7 @@ Payments MCP equips buyer agents with wallets and x402 payment capability. PEAC 
 ## Grant Application Status
 
 ### Materials Ready
-- ✅ Live demo URL: https://x402.peacprotocol.org
+- ✅ Live demo URL: https://2larp402.vercel.app/
 - ✅ GitHub repo: public, Apache-2.0
 - ✅ Integration docs: /docs/mcp-integration
 - ✅ Technical specs documented
@@ -173,7 +173,7 @@ Technical details for HN audience. See: docs/SOCIAL_COPY.md > Hacker News Post
 
 **Setup**:
 - Terminal: agents/headless-buyer (right side)
-- Browser: https://x402.peacprotocol.org (left side)
+- Browser: https://2larp402.vercel.app/ (left side)
 - Recording: QuickTime (Cmd+Shift+5)
 
 **Flow**:

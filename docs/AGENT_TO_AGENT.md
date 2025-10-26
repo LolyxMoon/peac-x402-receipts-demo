@@ -57,7 +57,7 @@ The A2A flow demonstrates:
 Agents start by fetching `/.well-known/peac.txt`:
 
 ```bash
-curl https://x402.peacprotocol.org/.well-known/peac.txt
+curl https://2larp402.vercel.app//.well-known/peac.txt
 ```
 
 Response:
@@ -76,7 +76,7 @@ public_keys: [{"kid":"peac-demo-key-1","alg":"EdDSA","key":"/public-keys/peac-de
 Then fetch the OpenAPI specification:
 
 ```bash
-curl https://x402.peacprotocol.org/api/openapi.json
+curl https://2larp402.vercel.app//api/openapi.json
 ```
 
 This returns a complete OpenAPI 3.0.1 spec describing all endpoints, request/response schemas, and required headers.
@@ -86,7 +86,7 @@ This returns a complete OpenAPI 3.0.1 spec describing all endpoints, request/res
 ### Step 1: Get catalog
 
 ```bash
-curl https://x402.peacprotocol.org/api/shop/catalog
+curl https://2larp402.vercel.app//api/shop/catalog
 ```
 
 Response:
@@ -103,7 +103,7 @@ Response:
 ### Step 2: Attempt checkout (expect 402)
 
 ```bash
-curl -X POST https://x402.peacprotocol.org/api/shop/checkout-direct \
+curl -X POST https://2larp402.vercel.app//api/shop/checkout-direct \
   -H "Content-Type: application/json" \
   -d '{
     "items": [
@@ -149,7 +149,7 @@ The agent pays using the x402 protocol (via CLI, facilitator, or demo token):
 PROOF_ID="demo-pay-ok-123"
 
 # Using x402 CLI (production)
-x402 pay --to https://x402.peacprotocol.org/api/shop/checkout-direct \
+x402 pay --to https://2larp402.vercel.app//api/shop/checkout-direct \
   --session wvRjHmE1tiiMMObN7wFLY \
   --network base \
   --amount 1.50 \
@@ -160,7 +160,7 @@ x402 pay --to https://x402.peacprotocol.org/api/shop/checkout-direct \
 ### Step 4: Complete checkout with proof
 
 ```bash
-curl -X POST https://x402.peacprotocol.org/api/shop/checkout-direct \
+curl -X POST https://2larp402.vercel.app//api/shop/checkout-direct \
   -H "Content-Type: application/json" \
   -H "X-402-Session: eyJhbGc..." \
   -H "X-402-Proof: demo-pay-ok-123" \
@@ -199,7 +199,7 @@ access-control-expose-headers: PEAC-Receipt
 ### Step 5: Verify receipt
 
 ```bash
-curl -X POST https://x402.peacprotocol.org/api/verify \
+curl -X POST https://2larp402.vercel.app//api/verify \
   -H "Content-Type: application/json" \
   -d '{
     "receipt": "eyJhbGciOiJFZERTQSIsImtpZCI6InBlYWMtZGVtby1rZXktMSIsInR5cCI6InBlYWMtcmVjZWlwdCtqd3MifQ..."
@@ -238,7 +238,7 @@ Response:
       "payer": "demo-payer"
     },
     "policy": {
-      "aipref_url": "https://x402.peacprotocol.org/aipref.json",
+      "aipref_url": "https://2larp402.vercel.app//aipref.json",
       "aipref_snapshot": {
         "version": "0.9.11",
         "purpose": ["paid-access", "auditability"],
@@ -251,7 +251,7 @@ Response:
     "provenance": {
       "c2pa": null
     },
-    "verify_url": "https://x402.peacprotocol.org/api/verify"
+    "verify_url": "https://2larp402.vercel.app//api/verify"
   }
 }
 ```
@@ -288,7 +288,7 @@ Edit `.env` to configure:
 
 ```bash
 # Merchant URL
-MERCHANT_ORIGIN=https://x402.peacprotocol.org
+MERCHANT_ORIGIN=https://2larp402.vercel.app/
 
 # Payment mode: 'cli' or 'facilitator' or use DEMO_PROOF
 PAY_MODE=cli
@@ -328,7 +328,7 @@ The agent will:
 
 ```
 == Headless buyer agent ==
-Merchant: https://x402.peacprotocol.org
+Merchant: https://2larp402.vercel.app/
 peac.txt:
  # ≤20 lines, dev-phase: v0.9.11
 preferences: /aipref.json

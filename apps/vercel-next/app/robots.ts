@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://x402.peacprotocol.org/sitemap.xml',
+    sitemap: 'https://2larp402.vercel.app//sitemap.xml',
   };
 }

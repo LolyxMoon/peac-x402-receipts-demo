@@ -9,7 +9,7 @@
           "value": "peac.originary.xyz"
         }
       ],
-      "destination": "https://x402.peacprotocol.org/:path*",
+      "destination": "https://2larp402.vercel.app//:path*",
       "permanent": true
     },
     {
@@ -20,7 +20,7 @@
           "value": "demo.peacprotocol.org"
         }
       ],
-      "destination": "https://x402.peacprotocol.org/:path*",
+      "destination": "https://2larp402.vercel.app//:path*",
       "permanent": true
     },
     {
@@ -31,7 +31,7 @@
           "value": "www.x402.peacprotocol.org"
         }
       ],
-      "destination": "https://x402.peacprotocol.org/:path*",
+      "destination": "https://2larp402.vercel.app//:path*",
       "permanent": true
     }
   ]

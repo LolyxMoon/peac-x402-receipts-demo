@@ -6,7 +6,7 @@
 set -e  # Exit on error
 
 # Configuration
-BASE_URL="${BASE_URL:-https://x402.peacprotocol.org}"
+BASE_URL="${BASE_URL:-https://2larp402.vercel.app/}"
 DEMO_PROOF="demo-pay-ok-123"
 
 echo "🧪 PEAC x402 Smoke Test"

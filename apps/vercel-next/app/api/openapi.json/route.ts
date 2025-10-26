@@ -11,7 +11,7 @@ export async function GET() {
     },
     servers: [
       {
-        url: 'https://x402.peacprotocol.org',
+        url: 'https://2larp402.vercel.app/',
         description: 'Production'
       }
     ],

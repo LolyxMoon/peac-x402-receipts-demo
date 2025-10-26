@@ -37,8 +37,8 @@ DEMO_MODE=true
 DEMO_TOKEN=demo-pay-ok-123
 X402_CHAIN=base
 X402_CURRENCY=USDC
-PUBLIC_ORIGIN=https://x402.peacprotocol.org
-NEXT_PUBLIC_ORIGIN=https://x402.peacprotocol.org
+PUBLIC_ORIGIN=https://2larp402.vercel.app/
+NEXT_PUBLIC_ORIGIN=https://2larp402.vercel.app/
 ```
 
 **Production (when ready):**
@@ -76,16 +76,16 @@ Test these endpoints:
 
 ```bash
 # Homepage
-curl https://x402.peacprotocol.org/
+curl https://2larp402.vercel.app//
 
 # Catalog API
-curl https://x402.peacprotocol.org/api/shop/catalog
+curl https://2larp402.vercel.app//api/shop/catalog
 
 # PEAC discovery
-curl https://x402.peacprotocol.org/.well-known/peac.txt
+curl https://2larp402.vercel.app//.well-known/peac.txt
 
 # Public key
-curl https://x402.peacprotocol.org/public-keys/peac-demo-key-1.json
+curl https://2larp402.vercel.app//public-keys/peac-demo-key-1.json
 ```
 
 ## Troubleshooting

@@ -3,7 +3,7 @@
 ## Environment Variables (Vercel Production)
 
 Required:
-- `PUBLIC_ORIGIN=https://x402.peacprotocol.org`
+- `PUBLIC_ORIGIN=https://2larp402.vercel.app/`
 - `PEAC_KID=peac-demo-key-1`
 - `PEAC_PRIVATE_KEY_BASE64=<EdDSA private key>`
 - `X402_CHAIN=base`
@@ -57,7 +57,7 @@ docs/artifacts/YYYY-MM-DD/
 
 ## DNS and SSL
 
-- Canonical: `https://x402.peacprotocol.org`
+- Canonical: `https://2larp402.vercel.app/`
 - Middleware redirects all non-canonical hosts (except localhost)
 - SSL certificate valid and auto-renewing
 - HSTS enabled
@@ -79,7 +79,7 @@ To redirect www.x402.peacprotocol.org to x402.peacprotocol.org:
    ```bash
    curl -I https://www.x402.peacprotocol.org
    # Should return: 308 Permanent Redirect
-   # Location: https://x402.peacprotocol.org/
+   # Location: https://2larp402.vercel.app//
    ```
 
 ## Monitoring
