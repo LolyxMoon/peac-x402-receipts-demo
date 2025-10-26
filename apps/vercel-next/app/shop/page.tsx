@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import CopyButton from '../components/CopyButton';
 
 type Product = {
   sku: string;
@@ -246,9 +247,12 @@ export default function ShopPage() {
 
         {receipt && (
           <div className="max-w-6xl mx-auto mt-8 card p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              PEAC Receipt (JWS)
-            </h2>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-gray-900">
+                PEAC Receipt (JWS)
+              </h2>
+              <CopyButton text={receipt} label="Copy Receipt" />
+            </div>
             <textarea
               readOnly
               value={receipt}

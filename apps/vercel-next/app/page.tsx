@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import CopyButton from './components/CopyButton';
 
 export default function Home() {
   return (
@@ -201,10 +202,18 @@ export default function Home() {
           </div>
 
           <div className="card p-8 border-2 border-brand/20">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Stateless Checkout Endpoint</h3>
-            <p className="text-gray-900 mb-2 font-mono text-sm">
-              POST /api/shop/checkout-direct
-            </p>
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-900">Stateless Checkout Endpoint</h3>
+                <p className="text-gray-900 mt-2 font-mono text-sm">
+                  POST /api/shop/checkout-direct
+                </p>
+              </div>
+              <CopyButton
+                text={`curl -X POST https://x402.peacprotocol.org/api/shop/checkout-direct -H "Content-Type: application/json" -d '{"items":[{"sku":"sku_tea","qty":1}]}'`}
+                label="Copy curl"
+              />
+            </div>
             <p className="text-gray-600 text-sm mb-6 leading-relaxed">
               No cart state required. Send items array, get 402 → pay via x402 → retry with proof → receive cryptographic receipt.
             </p>
@@ -218,6 +227,102 @@ export default function Home() {
               <div className="text-cyan-400 ml-4">  -H {`"X-402-Session: $TOKEN"`} \</div>
               <div className="text-cyan-400 ml-4">  -H {`"X-402-Proof: $PROOF_ID"`} \</div>
               <div className="text-cyan-400 ml-4">  -d {`'{"items":[{"sku":"sku_tea","qty":1}]}'`}</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="max-w-5xl mx-auto py-20 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <h2 className="text-3xl font-bold text-gray-900">
+                Works with Coinbase Payments MCP
+              </h2>
+              <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">NEW</span>
+            </div>
+
+            <p className="text-lg text-gray-700 text-center mb-8 leading-relaxed">
+              <strong>MCP pays. PEAC proves.</strong> Coinbase Payments MCP equips agents with wallets and x402 payment capability.
+              Our API issues cryptographic receipts that prove what agents bought - portable, policy-bound, and independently verifiable.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Install Payments MCP</h3>
+                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm mb-4">
+                  npx @coinbase/payments-mcp
+                </div>
+                <p className="text-gray-600 text-sm">
+                  Give your agents an embedded wallet, USDC onramp, and automatic x402 payment capability.
+                  Works with Claude Desktop, Gemini CLI, and any MCP-compatible client.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Integration Flow</h3>
+                <ol className="text-sm text-gray-700 space-y-2">
+                  <li className="flex gap-2">
+                    <span className="text-brand font-bold">1.</span>
+                    <span>Agent calls <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs font-mono">/api/shop/checkout-direct</code></span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-brand font-bold">2.</span>
+                    <span>Receives 402 Payment Required</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-brand font-bold">3.</span>
+                    <span><strong>MCP pays automatically</strong> via x402 (USDC on Base)</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-brand font-bold">4.</span>
+                    <span>Agent retries with proof</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-brand font-bold">5.</span>
+                    <span>Receives 200 OK + <strong>PEAC-Receipt</strong> (EdDSA-signed JWS)</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-brand font-bold">6.</span>
+                    <span>Receipt proves: payment made, content delivered, policy bound</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-blue-200">
+              <h4 className="font-semibold text-gray-900 mb-3">Try It in Claude Desktop</h4>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+                <p className="text-sm text-gray-700 font-mono">
+                  &gt; &quot;Buy 1 tea from https://x402.peacprotocol.org/api/shop/checkout-direct and show me the receipt&quot;
+                </p>
+              </div>
+              <p className="text-sm text-gray-600 mb-4">
+                With Payments MCP installed, Claude will automatically discover payment requirements, pay via x402,
+                and receive the cryptographic PEAC-Receipt - all autonomously.
+              </p>
+              <div className="flex flex-wrap gap-3 text-sm">
+                <a
+                  href="https://docs.cdp.coinbase.com/payments-mcp/welcome"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-700 font-medium underline"
+                >
+                  Payments MCP Docs →
+                </a>
+                <a
+                  href="https://docs.cdp.coinbase.com/x402/mcp-server"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-700 font-medium underline"
+                >
+                  MCP Server with x402 →
+                </a>
+                <Link
+                  href="/docs/mcp-integration"
+                  className="text-brand hover:text-brand-hover font-medium underline"
+                >
+                  Integration Guide →
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -307,7 +412,7 @@ export default function Home() {
             </a>
           </div>
           <p className="text-sm mb-4">
-            PEAC Protocol v0.9.11 · Demo amounts: $0.01–$0.05 USDC on Base
+            PEAC Protocol v0.9.14 · Demo amounts: $0.01-$0.05 USDC on Base
           </p>
           <p className="text-xs text-gray-400 max-w-2xl mx-auto leading-relaxed">
             <a

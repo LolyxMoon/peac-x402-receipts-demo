@@ -1,0 +1,38 @@
+name: Smoke Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    # Run daily at 9am UTC to catch regressions
+    - cron: '0 9 * * *'
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq curl
+
+      - name: Make smoke test executable
+        run: chmod +x scripts/smoke-test.sh
+
+      - name: Run smoke test against production
+        env:
+          BASE_URL: https://x402.peacprotocol.org
+        run: ./scripts/smoke-test.sh
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Smoke test failed! Check the logs above for details."
+          exit 1
