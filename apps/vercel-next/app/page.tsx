@@ -43,7 +43,7 @@ export default function Home() {
           <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
             Every <code className="bg-gray-100 px-2 py-1 rounded text-brand font-mono text-base">200 OK</code> comes with a cryptographic receipt.
             <br />
-            Pay with x402 (Base/USDC) → Get proof of what you bought, from whom, under which policy.
+            Pay with x402 (Base/USDC) → CONTRACT: XXXXXXXXXXXXXXXXXXXXXXXXXX
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
