@@ -61,6 +61,15 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500">
+            <a
+              href="https://peacprotocol.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand transition-colors"
+            >
+              PEAC Protocol
+            </a>
+            <span>·</span>
             <Link href="/.well-known/peac.txt" className="hover:text-brand transition-colors">
               peac.txt
             </Link>
@@ -301,7 +310,24 @@ export default function Home() {
             PEAC Protocol v0.9.11 · Demo amounts: $0.01–$0.05 USDC on Base
           </p>
           <p className="text-xs text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            PEAC Protocol is an open-source project stewarded by Originary and the broader open-source community.
+            <a
+              href="https://peacprotocol.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-gray-600"
+            >
+              PEAC Protocol
+            </a>
+            {' '}is an open-source project stewarded by{' '}
+            <a
+              href="https://www.originary.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-gray-600"
+            >
+              Originary
+            </a>
+            {' '}and the broader open-source community.
             <br />
             <a
               href="https://github.com/peacprotocol/peac/blob/main/CONTRIBUTING.md"
