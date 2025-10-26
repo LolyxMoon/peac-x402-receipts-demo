@@ -4,7 +4,7 @@
 
 Every `200 OK` with a cryptographic receipt. Pay with x402 (Base/USDC) and get portable proof of purchase.
 
-## Overview
+## Overviewaa
 
 This repository demonstrates **HTTP 402 Payment Required** combined with **PEAC receipts** to create verifiable proof-of-purchase for API interactions. Perfect for agent-to-agent commerce, micropayments, and auditable AI workflows.
 
